@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DafAksesController;
+use App\Http\Controllers\Api\DafSifatController;
 use App\Http\Controllers\Api\DafSatuanController;
 use App\Http\Controllers\Api\DafWadahController;
 use App\Http\Controllers\Api\UserController;
@@ -15,6 +16,10 @@ Route::post('login', LoginController::class);
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('dafakses', DafAksesController::class)->parameters([
         'dafakses' => 'dafakses'
+    ]);
+
+    Route::apiResource('dafsifat', DafSifatController::class)->parameters([
+        'dafsifat' => 'dafsifat'
     ]);
 
     Route::apiResource('dafsatuan', DafSatuanController::class)->parameters([
