@@ -11,7 +11,7 @@ Route::post('login', LoginController::class);
 
 Route::apiResource('dafakses', DafAksesController::class)->parameters([
     'dafakses' => 'dafakses'
-]);
+])->middleware('auth:sanctum');
 
 Route::get('/user', function (Request $request) {
     return $request->user();
