@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\DafAksesController;
 use App\Http\Controllers\Api\DafSatuanController;
+use App\Http\Controllers\Api\DafWadahController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -11,19 +12,24 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
 
-Route::apiResource('dafakses', DafAksesController::class)->parameters([
-    'dafakses' => 'dafakses'
-])->middleware('auth:sanctum');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('dafakses', DafAksesController::class)->parameters([
+        'dafakses' => 'dafakses'
+    ]);
 
-Route::apiResource('dafsatuan', DafSatuanController::class)->parameters([
-    'dafsatuan' => 'dafsatuan'
-])->middleware('auth:sanctum');
+    Route::apiResource('dafsatuan', DafSatuanController::class)->parameters([
+        'dafsatuan' => 'dafsatuan'
+    ]);
 
-Route::apiResource('users', UserController::class)->parameters([
-    'users' => 'user'
-])->middleware('auth:sanctum');
+    Route::apiResource('dafwadah', DafWadahController::class)->parameters([
+        'dafwadah' => 'dafwadah'
+    ]);
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+    Route::apiResource('users', UserController::class)->parameters([
+        'users' => 'user'
+    ]);
 
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+});
