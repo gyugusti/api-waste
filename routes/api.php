@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\DafAksesController;
+use App\Http\Controllers\Api\DafSatuanController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -12,6 +13,10 @@ Route::post('login', LoginController::class);
 
 Route::apiResource('dafakses', DafAksesController::class)->parameters([
     'dafakses' => 'dafakses'
+])->middleware('auth:sanctum');
+
+Route::apiResource('dafsatuan', DafSatuanController::class)->parameters([
+    'dafsatuan' => 'dafsatuan'
 ])->middleware('auth:sanctum');
 
 Route::apiResource('users', UserController::class)->parameters([
